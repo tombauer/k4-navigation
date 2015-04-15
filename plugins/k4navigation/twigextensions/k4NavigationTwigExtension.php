@@ -30,18 +30,20 @@ class k4NavigationTwigExtension extends \Twig_Extension
     }    
     
 
-    public function k4NavigationGetActivePath($content)
+    public function k4NavigationGetActivePath($content,$selectedPath)
     {
-        $selectedPath ="test";
+
         $html = str_get_html($content);
-        
-        $selectedFilter = 'a[href="'. $selectedPath .'"]';
-        
+       
+        $selectedFilter = 'a[href="'.$selectedPath.'"]';
+
         //set selected link 
-        $selectElem = $html->find( $selectedFilter)[0];
+        $selectElemArr = $html->find($selectedFilter);
 
         
-        if (is_object($selectElem)){
+        if (is_array($selectElemArr)){
+            $selectElem = $selectElemArr[0];
+
            // Element wurde gefunden - Active Klassen setzen
             for ($i = 1; $i <= 20; $i++) {
                 $selectElem->setAttribute("class","active");
@@ -50,16 +52,20 @@ class k4NavigationTwigExtension extends \Twig_Extension
                     break;
                 }
             }    
+        } else
+        {
+            $html = $content . "<!-- k4-navigation no link active -->";
         }
     
         return $html;
                
     }
     
-    public function k4NavigationGetBreadcrumb($content,$selectedPath,$dividerText)
+    public function k4NavigationGetBreadcrumb($content,$selectedPath,$dividerText = " > ")
     {
+       
      
-        $html = str_get_html(k4NavigationGetActivePath($content,$selectedPath));
+        $html = str_get_html($this->k4NavigationGetActivePath($content,$selectedPath));
         
         $breadcrumb = "";
            foreach($html->find('li[class="active"]') as $element){
@@ -70,14 +76,14 @@ class k4NavigationTwigExtension extends \Twig_Extension
                     $breadcrumb = $breadcrumb . $elementLink->outertext . $dividerText;
                 }
         }
-    
+        $breadcrumb = $breadcrumb;
         return $breadcrumb;         
     }
     
     public function k4NavigationGetSimpleNavigation($content,$selectedPath)
     {
      
-        $html = str_get_html(k4NavigationGetActivePath($content,$selectedPath));
+        $html = str_get_html($this->k4NavigationGetActivePath($content,$selectedPath));
         
         $filter = 'ul li[class!="active"] ul,ul li[!class] ul';
         foreach($html->find($filter) as $element){
