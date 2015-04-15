@@ -1,10 +1,13 @@
 <?php
 namespace Craft;
 
-include "simple_html_dom.php";
 
 class k4NavigationPlugin extends BasePlugin
 {
+    public funtion init(){
+        require_once "./library/simple_html_dom.php";
+    }
+    
     public function getName()
     {
          return Craft::t('k4 Navigation');
