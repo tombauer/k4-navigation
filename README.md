@@ -31,7 +31,7 @@ First, set your Menu in craft.
             {% endcache %}
         {% endset %}
 
-Now you can use the k4-navigation twig filer. See the examples below.
+Now you can use the k4-navigation twig filter. See the examples below.
 
 ###Simple add class "active" to all Parent-Elements of selected item
         {{ mainnavigation | k4NavigationGetActivePath(craft.request.getUrl()) | raw }} 
