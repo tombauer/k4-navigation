@@ -1,6 +1,7 @@
 #k4-navigation Craft Plugin
-Twig filter for advanced navigations in Craft CMS
+Twig filter for advanced navigations in Craft CMS. Demonstration of possible Options: http://www.bahu.ch/craft/
 
+Usage:
 - Install & Activate Plugin
 - Create your navigation menu in craft template
 - use the Twig filter to optimize
@@ -35,7 +36,7 @@ First, set your Menu in craft.
 Now you can use extended twig filer like showed 
 
 ###Simple add class "active" to all Parent-Elements of selected item
-            {{ mainnavigation | k4NavigationGetActivePath("test7.html") | raw}} 
+        {{ mainnavigation | k4NavigationGetActivePath("test7.html") | raw}} 
 
 ###Simple Menu shows only first level and also selected path
         {{ mainnavigation | k4NavigationGetSimpleNavigation("test7.html") | raw}} 
