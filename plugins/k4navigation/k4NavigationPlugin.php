@@ -5,7 +5,7 @@ namespace Craft;
 class k4NavigationPlugin extends BasePlugin
 {
     public function init(){
-        require_once "./library/simple_html_dom.php";
+        require_once "library/simple_html_dom.php";
     }
     
     public function getName()
