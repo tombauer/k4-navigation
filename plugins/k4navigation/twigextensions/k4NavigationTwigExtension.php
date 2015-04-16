@@ -32,7 +32,6 @@ class k4NavigationTwigExtension extends \Twig_Extension
 
     public function k4NavigationGetActivePath($content,$selectedPath)
     {
-
         $html = str_get_html($content);
        
         $selectedFilter = 'a[href="'.$selectedPath.'"]';
@@ -64,7 +63,6 @@ class k4NavigationTwigExtension extends \Twig_Extension
     public function k4NavigationGetBreadcrumb($content,$selectedPath,$dividerText = " > ")
     {
        
-     
         $html = str_get_html($this->k4NavigationGetActivePath($content,$selectedPath));
         
         $breadcrumb = "";
@@ -76,13 +74,11 @@ class k4NavigationTwigExtension extends \Twig_Extension
                     $breadcrumb = $breadcrumb . $elementLink->outertext . $dividerText;
                 }
         }
-        $breadcrumb = $breadcrumb;
         return $breadcrumb;         
     }
     
     public function k4NavigationGetSimpleNavigation($content,$selectedPath)
     {
-     
         $html = str_get_html($this->k4NavigationGetActivePath($content,$selectedPath));
         
         $filter = 'ul li[class!="active"] ul,ul li[!class] ul';
